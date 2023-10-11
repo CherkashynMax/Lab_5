@@ -23,8 +23,7 @@ def sort_and_count_words(file_path):
             text = file.read()
             words = re.findall(r'\b\w+\b', text, re.UNICODE)
             words = [word for word in words if word.isalpha()]
-            words = sorted(words, key=lambda x: x.lower())  # Сортуємо слова по алфавіту
-
+            words = sorted(words, key=lambda x: (x.lower().replace("і", "ї").replace("ї", "й"), x.lower())) # Сортуємо слова так, щоб "і" та "ї" були перед "й"
             print("\nВідсортовані слова з усього файлу:")
             print(' '.join(words))
             print("\nКількість слів у тексті:", len(words))
